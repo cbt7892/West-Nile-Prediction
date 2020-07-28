@@ -8,16 +8,20 @@ features = assemble_data()
 
 # unpack data
 x = features[0]
+x_train = x[0:5]
+x_test = x[5:]
 y = features[1]
+y_train = y[0:5]
+y_test = y[5:]
 
 # model
 model = Sequential()
-model.add(Dense(256, input_dim=10942, kernel_initializer="normal", activation="relu", bias_regularizer=l1(0.01)))
-model.add(Dense(64, kernel_initializer="normal", activation="relu", bias_regularizer=l1(0.01)))
-model.add(Dense(8, kernel_initializer="normal", activation="relu", bias_regularizer=l1(0.01)))
+model.add(Dense(256, input_dim=10942, kernel_initializer="normal", activation="relu", bias_regularizer=l1(100)))
+model.add(Dense(64, kernel_initializer="normal", activation="relu", bias_regularizer=l1(100)))
+model.add(Dense(8, kernel_initializer="normal", activation="relu", bias_regularizer=l1(100)))
 model.add(Dense(1, kernel_initializer="normal"))
 model.compile(loss="mean_squared_error", optimizer="adam")
-model.fit(x, y, epochs=50)
+model.fit(x_train, y_train, epochs=50)
 
 # save model
 model.save("wnv_prediction")
@@ -31,10 +35,3 @@ plt.xlabel("Year")
 plt.ylabel("Number of West Nile Virus Cases in Dallas, Texas")
 plt.title("Model Prediction vs. Actual Data")
 plt.show()
-
-
-
-
-
-
-
