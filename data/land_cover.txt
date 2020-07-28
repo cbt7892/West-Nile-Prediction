@@ -1,0 +1,38 @@
+Building
+Trees_CanopyCover
+Trees_CanopyCover
+Trees_CanopyCover
+Building
+Trees_CanopyCover
+Grass
+Impervious Surface
+Impervious Surface
+Impervious Surface
+Trees_CanopyCover
+Trees_CanopyCover
+Water>lake/ponded/container
+Grass
+Trees_CanopyCover
+Trees_CanopyCover
+Impervious Surface
+Building
+Trees_CanopyCover
+Impervious Surface
+Trees_CanopyCover
+Trees_CanopyCover
+Trees_CanopyCover
+Impervious Surface
+Grass
+Grass
+Impervious Surface
+Impervious Surface
+Impervious Surface
+Impervious Surface
+Grass
+Trees_CanopyCover
+Impervious Surface
+Impervious Surface
+Impervious Surface
+Trees_CanopyCover
+Impervious Surface
+Impervious Surface
