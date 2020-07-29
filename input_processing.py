@@ -1,4 +1,5 @@
 import numpy as np
+from load_globe_data import load_data
 
 
 def read_file(file_name, strings=False):
@@ -52,19 +53,28 @@ def normalize(inputs):
     return inputs
 
 
-def assemble_data():
+def assemble_data(chronological=False):
     temp_anomaly = read_file("data/annual_temp_anomaly.txt")
     dallas_temps = read_2d("data/dallas_temp.txt")
     globe_land_cover = labels_to_array(read_file("data/land_cover.txt", strings=True))
     satellite_data = np.load("data/satellite_data.npy").reshape(7, 10920)
+    globe_mosquito = load_data().reshape(210)
     west_nile_counts = read_file("data/dallas_wnv.txt")
 
-    all_inputs = np.zeros((7, 10942))
+    all_inputs = np.zeros((7, 11152))
     for i in range(7):
         all_inputs[i][0] = temp_anomaly[i]
         all_inputs[i][1:9] = dallas_temps[i]
         all_inputs[i][9:22] = globe_land_cover[i]
-        all_inputs[i][22:10942] = satellite_data[i]
+        if i == 0:
+            all_inputs[i][22:232] = globe_mosquito
+        else:
+            all_inputs[i][22:232] = np.zeros(210)  # no data available otherwise
+        if chronological:
+            all_inputs[i][232:] = satellite_data[6 - i]
+        else:
+            all_inputs[i][232:] = satellite_data[i]
 
     return [normalize(all_inputs), west_nile_counts]
 
+assemble_data()
